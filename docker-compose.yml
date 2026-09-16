@@ -1,6 +1,9 @@
-version: '3.8'
-
 services:
+  # Main FastAPI application.
+  # Default run:            docker compose up
+  # Fully-local run (uses the bundled Qdrant container, see below):
+  #   1. set QDRANT_URL=http://qdrant:6333 in .env
+  #   2. docker compose --profile local-qdrant up
   opsrag:
     build: .
     ports:
@@ -8,5 +11,21 @@ services:
     env_file:
       - .env
     volumes:
-      - ./app:/app/app  # For development hot reload
+      - ./app:/app/app        # development hot reload
+      - ./static:/app/static
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # Optional local Qdrant for offline development without touching the
+  # cloud free-tier quota. Gated behind a profile so plain `docker
+  # compose up` (production-style, Qdrant Cloud via env vars) is unaffected.
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+    profiles: ["local-qdrant"]
+
+volumes:
+  qdrant_storage:
