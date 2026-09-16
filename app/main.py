@@ -38,17 +38,21 @@ app.include_router(chat.router, tags=["RAG"])
 
 @app.on_event("startup")
 async def startup_event():
-    """Initialize services on startup."""
-    # The Qdrant collection is created by the ingest script.
-    # We log a reminder if it hasn't been set up yet.
-    from app.core.qdrant_client import collection_exists
-    if not collection_exists():
-        import logging
-        logging.warning(
-            "Qdrant collection '%s' does not exist. "
-            "Run 'python -m scripts.ingest' to populate the vector index.",
-            "opsrag_docs",
-        )
+    """Log a reminder if the vector index hasn't been built yet.
+
+    Deliberately non-fatal: a transient Qdrant outage at boot should
+    not take the API down — /health and the UI still respond.
+    """
+    import logging
+    try:
+        from app.core.qdrant_client import collection_exists
+        if not collection_exists():
+            logging.warning(
+                "Qdrant collection does not exist yet. "
+                "Run 'python -m scripts.ingest --recreate-collection' to build it."
+            )
+    except Exception as exc:  # noqa: BLE001 - startup must never crash
+        logging.warning("Could not reach Qdrant at startup: %s", exc)
 
 
 if __name__ == "__main__":

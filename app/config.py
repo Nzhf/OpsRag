@@ -1,10 +1,12 @@
 """Application configuration using pydantic-settings."""
-from pydantic_settings import BaseSettings
 from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
+
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
     # Qdrant Cloud
     qdrant_url: str = Field(..., description="Qdrant Cloud cluster URL")
@@ -26,10 +28,6 @@ class Settings(BaseSettings):
     embedding_dimension: int = Field(default=768, description="Embedding vector dimension")
     temperature: float = Field(default=0.1, description="LLM temperature")
     max_tokens: int = Field(default=4096, description="Max tokens for LLM response")
-
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
 
 
 # Global settings instance

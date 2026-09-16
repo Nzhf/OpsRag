@@ -228,6 +228,7 @@ async def check_inventory_status(item: str) -> Dict[str, Any]:
     return {
         "item": found["description"],
         "item_id": found["item_id"],
+        "found": True,
         "quantity_on_hand": quantity,
         "reorder_threshold": threshold,
         "unit": found.get("unit_of_measure", "pieces"),
