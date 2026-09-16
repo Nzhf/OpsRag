@@ -1,0 +1,1 @@
+"""Core client singletons for external services (Qdrant, Groq)."""
