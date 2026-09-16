@@ -2,6 +2,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from app.routers import health
 from app.routers import chat
 
@@ -23,6 +24,12 @@ app.add_middleware(
 
 # Mount static files (Phase 5 frontend)
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+
+@app.get("/", include_in_schema=False)
+async def root():
+    """Serve the chat UI at the root path."""
+    return FileResponse("static/index.html")
 
 # Include routers
 app.include_router(health.router, tags=["Health"])
