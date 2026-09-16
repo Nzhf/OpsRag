@@ -166,15 +166,19 @@ Requires Python 3.11+. Free-tier accounts at [Qdrant Cloud](https://cloud.qdrant
 
 ## How the agentic tool-calling works (plain language)
 
-*Written to be read aloud in an interview.*
+In plain RAG mode, every question takes the same path: search the vector database, assemble the retrieved text into a prompt, generate an answer. That works well for document questions, but it cannot answer "how many 4.7k resistors do we have?" — that answer is not buried in a paragraph of prose, it lives in a structured inventory file.
 
-> In plain RAG mode, every question takes the same path: search the vector database, stuff the results into a prompt, generate. That's fine for document questions, but it can't answer "how many 4.7k resistors do we have?" — the answer isn't in a paragraph of prose, it's in a structured inventory file.
->
-> Agent mode flips the control around. Instead of my code deciding what happens, I hand the model three tool definitions — JSON schemas describing a SOP lookup, an inventory check, and a defect-log summarizer — and ask it to answer with `tool_choice="auto"`. The model doesn't execute anything itself. It responds with a structured *request*: "call `check_inventory_status` with the argument `solder paste`."
->
-> My orchestration loop in `agent.py` parses that request, looks the function up in a Python `TOOL_REGISTRY` dict, and actually executes it — the inventory tool reads a real JSON file and does exact/substring/fuzzy matching, not vector search, because stock levels are exact facts, not semantics. The tool's result is appended back into the conversation as a `role="tool"` message, and Groq is called a second time, now with the tool output in context, to write the final natural-language answer.
->
-> So the model is the *decision-maker* and my Python is the *hands*. That separation matters: the LLM never invents a stock number — it can only relay what the tool returned, and if the tool says "not found," the answer says so. The same loop handles the SOP tool, except that one *does* use vector search, filtered to `doc_type == "sop"`. And because the endpoint returns the list of tool calls alongside the answer, the UI can show exactly which tools fired and with what arguments — the reasoning chain is inspectable, not hidden.
+Agent mode reverses who makes the decisions. OpsRAG gives the model three tool definitions — JSON schemas describing an SOP lookup, an inventory check, and a defect-log summarizer — and lets the model choose how to answer (`tool_choice="auto"`). The model never executes anything itself. Instead, it replies with a structured *request*: "call `check_inventory_status` with the argument `solder paste`."
+
+The orchestration loop in `app/services/agent.py` parses that request, looks the function up in a Python `TOOL_REGISTRY` dict, and executes it. Each tool runs locally in Python:
+
+- `lookup_sop` performs a vector search filtered to `doc_type == "sop"` — appropriate for semantic "how do we do X?" questions.
+- `check_inventory_status` skips vector search entirely and matches against the inventory JSON using exact, substring, and fuzzy matching — appropriate because stock levels are exact facts, not semantics.
+- `summarize_defect_log` parses a natural-language date range and aggregates the defect log by type, line, and shift.
+
+The tool's result is appended back into the conversation as a `role="tool"` message, and Groq is called a second time — now with the tool output in context — to write the final natural-language answer. If the model decides no tool is needed, it simply answers directly.
+
+The key design property is separation of concerns: the model is the *decision-maker*, the Python services are the *hands*. The LLM never invents a stock number — it can only relay what a tool actually returned, and if the tool says "not found," the answer says so. And because `/chat/agent` returns the list of tool calls alongside the answer, the UI can display exactly which tools fired and with what arguments: the reasoning chain is inspectable, not hidden.
 
 ## Tests
 
