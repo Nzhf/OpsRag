@@ -1,0 +1,301 @@
+{
+  "metadata": {
+    "site": "BizLink Penang Manufacturing",
+    "period": "August 2026",
+    "generated_date": "2026-08-31",
+    "total_handovers": 7
+  },
+  "handovers": [
+    {
+      "handover_id": "SHN-2026-08-001",
+      "date": "2026-08-03",
+      "outgoing_shift": "Morning",
+      "incoming_shift": "Afternoon",
+      "line": "SMT-1",
+      "product": "MC200 Controller Board Rev A2",
+      "line_leader_outgoing": "T. Wong",
+      "line_leader_incoming": "S. Lim",
+      "production_status": {
+        "units_produced": 412,
+        "units_target": 450,
+        "status": "Behind by 38 units due to 45-minute stoppage for stencil cleaning and replacement",
+        "schedule_changes": "None. Continue MC200 through afternoon shift."
+      },
+      "quality_issues": {
+        "defects_found": "Solder bridges on U15/U16 (QFP-48) - 12 units affected",
+        "ncr_initiated": "No NCR, corrected via immediate rework",
+        "special_notes": "New stencil installed at 10:30. First article after stencil change passed. Monitor for any paste-related issues."
+      },
+      "equipment_status": {
+        "issues": "Stencil wear detected during morning inspection. Replaced.",
+        "maintenance_in_progress": "None",
+        "temp_fixes": "None"
+      },
+      "material_status": {
+        "low_stock": "R402 (4.7k 0402) - 2 reels remaining, ~800 units. Requested from stores.",
+        "material_issues": "None",
+        "expected_deliveries": "Reel of R402 expected from stores by 15:00"
+      },
+      "safety_5s": {
+        "incidents": "None",
+        "housekeeping": "Good. Floor clean, tools in place.",
+        "attention_needed": "None"
+      },
+      "pending_actions": [
+        "Monitor first 50 units after stencil replacement for solder quality",
+        "Stores delivering R402 reels - verify quantity when received"
+      ],
+      "notes": "Smooth morning overall. Stencil change took longer than expected but quality is back on track. Check in with AOI operator around 16:00 to confirm no new bridges."
+    },
+    {
+      "handover_id": "SHN-2026-08-002",
+      "date": "2026-08-07",
+      "outgoing_shift": "Afternoon",
+      "incoming_shift": "Night",
+      "line": "SMT-3",
+      "product": "PWR-500 Power Module Rev B1",
+      "line_leader_outgoing": "R. Kumar",
+      "line_leader_incoming": "A. Rahman",
+      "production_status": {
+        "units_produced": 285,
+        "units_target": 300,
+        "status": "Slightly behind due to quality check on MOSFET solder joints. 15 units behind target.",
+        "schedule_changes": "None. Continue PWR-500 through night shift."
+      },
+      "quality_issues": {
+        "defects_found": "Insufficient solder on U1 (TO-263 MOSFET) - 5 units. Sent to rework.",
+        "ncr_initiated": "NCR-2026-08-007 initiated for stencil wear root cause analysis",
+        "special_notes": "Stencil was replaced at 16:00. First articles after replacement look good. AOI thresholds were adjusted to catch low solder on large pads."
+      },
+      "equipment_status": {
+        "issues": "Stencil exceeded recommended print count (78k prints). Replaced with new stencil.",
+        "maintenance_in_progress": "None",
+        "temp_fixes": "None"
+      },
+      "material_status": {
+        "low_stock": "U1 (MOSFET IRF540) - getting low, about 200 remaining in feeder. Order placed.",
+        "material_issues": "None",
+        "expected_deliveries": "MOSFETs expected tomorrow morning from supplier"
+      },
+      "safety_5s": {
+        "incidents": "None",
+        "housekeeping": "Acceptable. Stencil storage area needs reorganizing - did quick clean but needs more attention when time permits.",
+        "attention_needed": "Stencil storage organization"
+      },
+      "pending_actions": [
+        "Continue monitoring MOSFET solder quality after stencil replacement",
+        "Stencil storage needs tidying when line is idle",
+        "MOSFET stock - if running low before morning delivery, notify supervisor"
+      ],
+      "notes": "Stencil was the main issue today. We caught it before it became a bigger problem. Recommend checking stencil print count during morning startup - we almost missed it. New procedure for stencil life tracking should help."
+    },
+    {
+      "handover_id": "SHN-2026-08-003",
+      "date": "2026-08-10",
+      "outgoing_shift": "Morning",
+      "incoming_shift": "Afternoon",
+      "line": "SMT-1",
+      "product": "MC200 Controller Board Rev A2",
+      "line_leader_outgoing": "L. Chen",
+      "line_leader_incoming": "M. Tanaka",
+      "production_status": {
+        "units_produced": 380,
+        "units_target": 450,
+        "status": "Behind 70 units due to 2-hour stoppage for wrong component issue and rework.",
+        "schedule_changes": "Production supervisor approved overtime for evening shift to catch up. May need weekend run if not recovered."
+      },
+      "quality_issues": {
+        "defects_found": "Wrong capacitor value (10uF instead of 22uF) on 25 units. Detected at functional test.",
+        "ncr_initiated": "NCR-2026-08-045 initiated. Root cause: feeder loading error without barcode scan verification.",
+        "special_notes": "All 25 units identified, rework in progress. Engineering checking if any units from this lot shipped - unlikely but verifying. Corrective action: mandatory barcode scan for all feeder changes implemented immediately."
+      },
+      "equipment_status": {
+        "issues": "None equipment-related. Issue was process/human error.",
+        "maintenance_in_progress": "None",
+        "temp_fixes": "None"
+      },
+      "material_status": {
+        "low_stock": "All materials adequate.",
+        "material_issues": "Wrong component issue addressed. Stores is double-checking all capacitor reels for correct labeling.",
+        "expected_deliveries": "None expected this shift."
+      },
+      "safety_5s": {
+        "incidents": "Minor - operator cut finger on reel edge while correcting feeder. First aid applied. No lost time.",
+        "housekeeping": "Good considering the disruption.",
+        "attention_needed": "Check reel edges for sharp spots during feeder loading."
+      },
+      "pending_actions": [
+        "Rework team continuing through afternoon - estimate 25 units done by 16:00",
+        "QA to verify all reworked units before release",
+        "All feeder changes must use barcode scan - monitor compliance"
+      ],
+      "notes": "Tough morning. The wrong component was a preventable error. We've tightened up the barcode scan requirement. Quality is checking scope of the issue. Rework is straightforward but time-consuming. Appreciate the overtime approval - we should catch up by end of afternoon shift."
+    },
+    {
+      "handover_id": "SHN-2026-08-004",
+      "date": "2026-08-14",
+      "outgoing_shift": "Night",
+      "incoming_shift": "Morning",
+      "line": "SMT-2",
+      "product": "MC200 Controller Board Rev A2",
+      "line_leader_outgoing": "A. Rahman",
+      "line_leader_incoming": "T. Wong",
+      "production_status": {
+        "units_produced": 425,
+        "units_target": 400,
+        "status": "Ahead by 25 units. Good night shift, no major issues.",
+        "schedule_changes": "None. MC200 running well, continue through morning."
+      },
+      "quality_issues": {
+        "defects_found": "2 cold solder joints on BGA-256 detected at X-ray. Sent to BGA rework.",
+        "ncr_initiated": "No NCR - isolated issue, oven zone 6 was drifting. Already addressed.",
+        "special_notes": "Reflow oven zone 6 was 12°C below setpoint. Recalibrated at midnight. Verification profile shows all zones now within spec. Increased calibration frequency to bi-weekly."
+      },
+      "equipment_status": {
+        "issues": "Reflow oven Zone 6 drift detected and corrected.",
+        "maintenance_in_progress": "None - calibration done during shift.",
+        "temp_fixes": "None"
+      },
+      "material_status": {
+        "low_stock": "U20 (BGA-256) - running low, ~150 remaining. Placed order yesterday.",
+        "material_issues": "None",
+        "expected_deliveries": "BGA shipment expected Monday (Aug 17) from distributor."
+      },
+      "safety_5s": {
+        "incidents": "None",
+        "housekeeping": "Excellent. Night shift cleaned and organized.",
+        "attention_needed": "None"
+      },
+      "pending_actions": [
+        "Monitor BGA solder quality after recalibration - first 30 units",
+        "BGA stock should last until Monday delivery - verify with stores if running faster than expected"
+      ],
+      "notes": "Quiet night shift. Found the oven drift early thanks to our X-ray sampling. Calibration took about an hour. All back to normal. Check the X-ray results around 10:00 to confirm no new issues."
+    },
+    {
+      "handover_id": "SHN-2026-08-005",
+      "date": "2026-08-19",
+      "outgoing_shift": "Afternoon",
+      "incoming_shift": "Night",
+      "line": "Assembly-A",
+      "product": "PWR-500 Power Module Rev B1",
+      "line_leader_outgoing": "S. Lim",
+      "line_leader_incoming": "R. Kumar",
+      "production_status": {
+        "units_produced": 178,
+        "units_target": 180,
+        "status": "On target. Steady production all shift.",
+        "schedule_changes": "Switching to MC200 tomorrow morning per updated schedule. Begin changeover prep at end of night shift if time permits."
+      },
+      "quality_issues": {
+        "defects_found": "Minor - 3 units with cosmetic scratches on enclosure. Sent to rework for touch-up.",
+        "ncr_initiated": "None",
+        "special_notes": "First pass yield at 97.2% this shift - good numbers. Continue current setup."
+      },
+      "equipment_status": {
+        "issues": "Torque driver D2 calibration sticker expired yesterday. Tagged for calibration.",
+        "maintenance_in_progress": "None - calibration scheduled for tomorrow morning.",
+        "temp_fixes": "Using backup torque driver D3 for now."
+      },
+      "material_status": {
+        "low_stock": "Enclosure screws M3x6 - 500 remaining. Should last through night shift.",
+        "material_issues": "None",
+        "expected_deliveries": "Screw delivery tomorrow morning."
+      },
+      "safety_5s": {
+        "incidents": "None",
+        "housekeeping": "Good. Cleaned up solder splash area.",
+        "attention_needed": "None"
+      },
+      "pending_actions": [
+        "Continue with backup torque driver D3 until D2 is recalibrated",
+        "If time permits, begin staging MC200 materials for morning changeover",
+        "Monitor screw stock - notify stores if running out before morning delivery"
+      ],
+      "notes": "Smooth shift. Good quality numbers. The torque driver calibration is the only thing to watch - D3 is working fine but we need D2 back. Check with calibration lab tomorrow morning. Changeover to MC200 is set for morning - staging materials tonight will save time."
+    },
+    {
+      "handover_id": "SHN-2026-08-006",
+      "date": "2026-08-25",
+      "outgoing_shift": "Morning",
+      "incoming_shift": "Afternoon",
+      "line": "SMT-1",
+      "product": "MC200 Controller Board Rev A2",
+      "line_leader_outgoing": "L. Chen",
+      "line_leader_incoming": "M. Tanaka",
+      "production_status": {
+        "units_produced": 440,
+        "units_target": 450,
+        "status": "On track. 10 units behind due to depaneling adjustment.",
+        "schedule_changes": "None"
+      },
+      "quality_issues": {
+        "defects_found": "2 units with missing edge resistors after depaneling. Corrected with rework.",
+        "ncr_initiated": "No NCR - immediate corrective action taken.",
+        "special_notes": "Adjusted depaneling fixture clearance. Added post-depaneling inspection for edge components. No further issues after fix."
+      },
+      "equipment_status": {
+        "issues": "Depaneling router bit worn - replaced during shift.",
+        "maintenance_in_progress": "None",
+        "temp_fixes": "None"
+      },
+      "material_status": {
+        "low_stock": "All materials adequate.",
+        "material_issues": "None",
+        "expected_deliveries": "None"
+      },
+      "safety_5s": {
+        "incidents": "None",
+        "housekeeping": "Good. Router area cleaned after bit replacement.",
+        "attention_needed": "None"
+      },
+      "pending_actions": [
+        "Continue monitoring post-depaneling quality - next 50 units",
+        "Router bit replacement added to weekly PM checklist"
+      ],
+      "notes": "The depaneling issue was a quick fix. Components near the edge were getting snagged. We've adjusted the fixture and added a quick visual check after routing. Quality is good. Should hit target by end of afternoon shift."
+    },
+    {
+      "handover_id": "SHN-2026-08-007",
+      "date": "2026-08-29",
+      "outgoing_shift": "Night",
+      "incoming_shift": "Morning",
+      "line": "Assembly-B",
+      "product": "PWR-500 Power Module Rev B1",
+      "line_leader_outgoing": "A. Rahman",
+      "line_leader_incoming": "S. Lim",
+      "production_status": {
+        "units_produced": 195,
+        "units_target": 200,
+        "status": "On target. Steady night.",
+        "schedule_changes": "Customer requested expedited shipment for 50 units. Plan to complete by end of morning shift and coordinate with shipping for same-day dispatch."
+      },
+      "quality_issues": {
+        "defects_found": "4 units with reversed electrolytic capacitors. Caught at inspection, corrected.",
+        "ncr_initiated": "NCR-2026-08-082 documenting the polarity marking confusion with new supplier.",
+        "special_notes": "Created visual aid showing capacitor polarity markings for all approved suppliers. Posted at station and trained inspectors. Issue resolved."
+      },
+      "equipment_status": {
+        "issues": "None",
+        "maintenance_in_progress": "None",
+        "temp_fixes": "None"
+      },
+      "material_status": {
+        "low_stock": "All materials adequate for expedit order.",
+        "material_issues": "None",
+        "expected_deliveries": "None"
+      },
+      "safety_5s": {
+        "incidents": "None",
+        "housekeeping": "Good.",
+        "attention_needed": "None"
+      },
+      "pending_actions": [
+        "Priority: Complete 50 units for customer expedit by 11:00",
+        "Coordinate with shipping for 14:00 dispatch",
+        "Continue using new capacitor polarity visual aid"
+      ],
+      "notes": "Good night. The polarity issue was from the new supplier using different marking convention. We've trained everyone and made a visual aid - shouldn't happen again. Priority for morning is the expedited shipment. Customer needs these 50 units on today's truck. Coordinate with shipping by 10:00 to confirm dispatch arrangements."
+    }
+  ]
+}
